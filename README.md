@@ -3,35 +3,53 @@ Write a C++ code with a function named "sum" that takes two integer arguments, c
 
 
 #include <iostream>
+#include <cmath>
 using namespace std;
 
-int rev(int x){
-    int rem , revNum = 0;
-    int y = x;
-
-    while(x!=0){
-        rem = x % 10;
-        revNum = (revNum*10) + rem;
-        x = x / 10;
-    }
-
+int sum(int first , int last){
     int s = 0;
-    while(y!=0){
-        s = s + (y % 10);
-        y = y/10;
-    }
-    cout << "Sum of the reverse number: " << s << endl;
-    return revNum;
 
+    for(int i=first; i<=last; i++){
+
+        s = s + i;
+    }
+
+    return s;
 }
 
-
 int main(){
+    int a , b , temp = 0;
+    cout << "Enter the first number: ";
+    cin >> a;
+    cout << "Enter the second number: ";
+    cin >> b;
+    if(a>b){
+        temp = a;
+        a = b;
+        b = temp;
+    }
 
-    int num;
-    cout << "Enter a number: ";
-    cin >> num;
-    int r = rev(num);
-    cout << "Reverse Number: " << r << endl;
+    int x = sum(a , b);
+
+    if(temp>abs(a)){
+        for(int i=b; i>=a; i--){
+            cout << i << " + ";
+        }
+    }
+
+    else{
+        for(int i=a; i<=b; i++){
+            if(i<0){
+                cout << "(" << i << ") + ";
+            }
+            else{
+                cout << i << " + ";
+            }
+
+        }
+    }
+
+    cout << "\b\b= " << x;
+
     return 0;
 }
